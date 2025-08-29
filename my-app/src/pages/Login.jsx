@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
+let navigate=useNavigate()
+
   const [data, setData] = useState({
     email: "",
     password: "",
   });
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/createuser", {
+    const response = await fetch("http://localhost:5000/api/loginuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,6 +28,9 @@ export default function Login() {
 
     if (response.ok) {
       setData({ email: "", password: "" });
+    }
+    if(response.ok){
+      navigate('/')
     }
   };
   return (
