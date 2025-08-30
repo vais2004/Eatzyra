@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { jsx } from "react/jsx-runtime";
 
 export default function Login() {
-let navigate=useNavigate()
+  let navigate = useNavigate();
 
   const [data, setData] = useState({
     email: "",
     password: "",
   });
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,8 +29,9 @@ let navigate=useNavigate()
     if (response.ok) {
       setData({ email: "", password: "" });
     }
-    if(response.ok){
-      navigate('/')
+    if (response.ok) {
+      localStorage.setItem("authToken", json.authToken);
+      navigate("/");
     }
   };
   return (
