@@ -42,7 +42,7 @@ export default function Home() {
       <div className="container">
         {foodCat.length > 0 ? (
           foodCat.map((data) => (
-            <div >
+            <div>
               <div key={data._id} className="row mb-3">
                 <div className="fs-3 m-3">{data.CategoryName}</div>
                 <hr />
@@ -51,8 +51,14 @@ export default function Home() {
                   foodItem
                     .filter((item) => item.CategoryName === data.CategoryName)
                     .map((filteredItem) => (
-                      <div key={filteredItem._id} className="col-12 col-md-6 col-lg-3">
-                        <Card />
+                      <div
+                        key={filteredItem._id}
+                        className="col-12 col-md-6 col-lg-3">
+                        <Card
+                          foodName={filteredItem.name}
+                          options={filteredItem.options[0]}
+                          imgUrl={filteredItem.img}
+                        />
                       </div>
                     ))
                 ) : (
