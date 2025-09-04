@@ -1,108 +1,106 @@
+// import React from "react";
 
-import React from "react";
+// export default function Carousal() {
+//   return (
+//     <div>
+//       <div
+//         id="carouselExampleFade"
+//         className="carousel slide carousel-fade position-relative"
+//         data-bs-ride="carousel"
+//         style={{ objectFit: "contain !important" }}>
+//         {/* Search Bar Overlay */}
+//         <div
+//           className="position-absolute bottom-0 start-50 translate-middle-x w-75 mb-5 pb-5"
+//           style={{ zIndex: 10 }}>
+//           <form className="d-flex" role="search">
+//             <input
+//               className="form-control me-2 text-light"
+//               type="search"
+//               placeholder="Search food..."
+//               aria-label="Search"
+//             />
+//             <button
+//               className="btn btn-outline-success text-light"
+//               type="submit">
+//               Search
+//             </button>
+//           </form>
+//         </div>
 
-export default function Carousal() {
-  return (
-    <div>
-      <div
-        id="carouselExampleFade"
-        className="carousel slide carousel-fade position-relative"
-        data-bs-ride="carousel" style={{objectFit:'contain !important'}}
-      >
-        {/* Search Bar Overlay */}
-        <div
-          className="position-absolute bottom-0 start-50 translate-middle-x w-75 mb-5 pb-5"
-          style={{ zIndex: 10 }}
-        >
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2 text-light"
-              type="search"
-              placeholder="Search food..."
-              aria-label="Search"
-            />
-            <button
-            className="btn btn-outline-success text-light"
-              type="submit"
-              
-            >
-              Search
-            </button>
-          </form>
-        </div>
+//         {/* Carousel Images */}
+//         <div className="carousel-inner" style={{ maxHeight: "500px" }}>
+//           <div className="carousel-item active">
+//             <img
+//               src="https://media.istockphoto.com/id/1022778136/photo/chicken-and-fish-tikka-kabab-pune-india.jpg?s=612x612&w=0&k=20&c=LBUQ4BBDEDsrk4nSC_XA7meiavlfeXIUUvVWaYrpIGU="
+//               className="d-block w-100"
+//               style={{ filter: "brightness(30%)" }}
+//               alt="Barbeque"
+//             />
+//           </div>
+//           <div className="carousel-item">
+//             <img
+//               src="https://media.istockphoto.com/id/1298231108/photo/photos-of-various-drinks.jpg?s=612x612&w=0&k=20&c=nCaA8uG07En-a-cxHJQ25_pXC4C-AVhDNAkVKnZyCSw="
+//               className="d-block w-100"
+//               style={{ filter: "brightness(30%)" }}
+//               alt="Drinks"
+//             />
+//           </div>
+//           <div className="carousel-item">
+//             <img
+//               src="https://media.istockphoto.com/id/1487015383/photo/batata-harra-pizza-with-potato-served-in-cutting-board-isolated-on-background-top-view-of.jpg?s=612x612&w=0&k=20&c=UkHNrrxHl9TOdpaF4CXJx7bthZBFZ3sWqlsL9BICxXw="
+//               className="d-block w-100"
+//               style={{ filter: "brightness(30%)" }}
+//               alt="Pizza"
+//             />
+//           </div>
+//           <div className="carousel-item">
+//             <img
+//               src="https://media.istockphoto.com/id/944478708/photo/couple-eating-lunch-with-fresh-salad-and-appetizers.jpg?s=612x612&w=0&k=20&c=xZdIIHvakQrYCbR59RM8nrhEnw-xu4nE-BOeOhQPnck="
+//               className="d-block w-100"
+//               style={{ filter: "brightness(30%)" }}
+//               alt="Salad"
+//             />
+//           </div>
+//           <div className="carousel-item">
+//             <img
+//               src="https://media.istockphoto.com/id/1038065454/photo/bowls-with-chow-mein.jpg?s=612x612&w=0&k=20&c=Um-yBOKIzCrccvMRjIpm0_h6xFhkx5q8okrYdGa75aM="
+//               className="d-block w-100"
+//               style={{ filter: "brightness(30%)" }}
+//               alt="Noodles"
+//             />
+//           </div>
+//           <div className="carousel-item">
+//             <img
+//               src="https://media.istockphoto.com/id/1290444763/photo/assorted-of-indian-dish-with-curry-dish-naan-chicken.jpg?s=612x612&w=0&k=20&c=5q09leP6_QnvdUEfsB6KUXDTTBJtl88bEwrDfRVNA0U="
+//               className="d-block w-100"
+//               style={{ filter: "brightness(30%)" }}
+//               alt="Indian food"
+//             />
+//           </div>
+//         </div>
 
-        {/* Carousel Images */}
-        <div className="carousel-inner" style={{'maxHeight':'500px'}}>
-          <div className="carousel-item active">
-            <img
-              src="https://media.istockphoto.com/id/1022778136/photo/chicken-and-fish-tikka-kabab-pune-india.jpg?s=612x612&w=0&k=20&c=LBUQ4BBDEDsrk4nSC_XA7meiavlfeXIUUvVWaYrpIGU="
-              className="d-block w-100"
-              style={{ filter: "brightness(30%)" }}
-              alt="Barbeque"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://media.istockphoto.com/id/1298231108/photo/photos-of-various-drinks.jpg?s=612x612&w=0&k=20&c=nCaA8uG07En-a-cxHJQ25_pXC4C-AVhDNAkVKnZyCSw="
-              className="d-block w-100"
-              style={{ filter: "brightness(30%)" }}
-              alt="Drinks"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://media.istockphoto.com/id/1487015383/photo/batata-harra-pizza-with-potato-served-in-cutting-board-isolated-on-background-top-view-of.jpg?s=612x612&w=0&k=20&c=UkHNrrxHl9TOdpaF4CXJx7bthZBFZ3sWqlsL9BICxXw="
-              className="d-block w-100"
-              style={{ filter: "brightness(30%)" }}
-              alt="Pizza"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://media.istockphoto.com/id/944478708/photo/couple-eating-lunch-with-fresh-salad-and-appetizers.jpg?s=612x612&w=0&k=20&c=xZdIIHvakQrYCbR59RM8nrhEnw-xu4nE-BOeOhQPnck="
-              className="d-block w-100"
-              style={{ filter: "brightness(30%)" }}
-              alt="Salad"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://media.istockphoto.com/id/1038065454/photo/bowls-with-chow-mein.jpg?s=612x612&w=0&k=20&c=Um-yBOKIzCrccvMRjIpm0_h6xFhkx5q8okrYdGa75aM="
-              className="d-block w-100"
-              style={{ filter: "brightness(30%)" }}
-              alt="Noodles"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://media.istockphoto.com/id/1290444763/photo/assorted-of-indian-dish-with-curry-dish-naan-chicken.jpg?s=612x612&w=0&k=20&c=5q09leP6_QnvdUEfsB6KUXDTTBJtl88bEwrDfRVNA0U="
-              className="d-block w-100"
-              style={{ filter: "brightness(30%)" }}
-              alt="Indian food"
-            />
-          </div>
-        </div>
-
-        {/* Controls */}
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleFade"
-          data-bs-slide="prev"
-        >
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleFade"
-          data-bs-slide="next"
-        >
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div>
-  );
-}
+//         {/* Controls */}
+//         <button
+//           className="carousel-control-prev"
+//           type="button"
+//           data-bs-target="#carouselExampleFade"
+//           data-bs-slide="prev">
+//           <span
+//             className="carousel-control-prev-icon"
+//             aria-hidden="true"></span>
+//           <span className="visually-hidden">Previous</span>
+//         </button>
+//         <button
+//           className="carousel-control-next"
+//           type="button"
+//           data-bs-target="#carouselExampleFade"
+//           data-bs-slide="next">
+//           <span
+//             className="carousel-control-next-icon"
+//             aria-hidden="true"></span>
+//           <span className="visually-hidden">Next</span>
+//         </button>
+//       </div>
+//     </div>
+//   );
+// }
