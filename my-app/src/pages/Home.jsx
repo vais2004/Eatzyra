@@ -59,15 +59,9 @@ export default function Home() {
                   setSearch(e.target.value);
                 }}
               />
-              {/* <button
-                className="btn btn-outline-success text-light"
-                type="submit">
-                Search
-              </button> */}
             </div>
           </div>
 
-          {/* Carousel Images */}
           <div className="carousel-inner" style={{ maxHeight: "500px" }}>
             <div className="carousel-item active">
               <img
@@ -119,7 +113,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Controls */}
           <button
             className="carousel-control-prev"
             type="button"
