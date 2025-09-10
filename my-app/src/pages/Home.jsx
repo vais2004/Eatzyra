@@ -155,9 +155,8 @@ export default function Home() {
                         key={filteredItem._id}
                         className="col-12 col-md-6 col-lg-3">
                         <Card
-                          foodName={filteredItem.name}
+                          foodItems={filteredItem}
                           options={filteredItem.options[0]}
-                          imgUrl={filteredItem.img}
                         />
                       </div>
                     ))

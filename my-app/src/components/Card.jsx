@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatchCart,useCart } from "./ContextReducer";
 
 export default function Card(props) {
   let options = props.options;
   let priceOption = Object.keys(options);
+let foodItem = props.foodItems;
 
   const handleAddToCart=()=>{
 
@@ -13,13 +15,13 @@ export default function Card(props) {
     <div>
       <div className="card" style={{ width: "18rem", maxHeight: "380px" }}>
         <img
-          src={props.imgUrl}
+          src={foodItem.imgUrl}
           className="card-img-top"
           alt="food item"
           style={{ maxHeight: "170px", objectFit: "fill" }}
         />
         <div className="card-body">
-          <h5 className="card-title">{props.foodName}</h5>
+          <h5 className="card-title">{foodItem.foodName}</h5>
           {/* <p className="card-text">Some quick example text.</p> */}
           <div className="container w-100">
             <select className="m-2 h-100 col-2 text-center bg-success  text-light  rounded">
