@@ -1,7 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-success">
@@ -34,16 +39,42 @@ export default function Header() {
                   Home
                 </Link>
               </li>
+              {localStorage.getItem("authToken") ? (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active fs-5 link-light"
+                    aria-current="page"
+                    to="/">
+                    My Orders
+                  </Link>
+                </li>
+              ) : (
+                ""
+              )}
             </ul>
-            <div className="d-flex">
-              <Link className="btn btn-outline-light  mx-1" to="/login">
-                Login
-              </Link>
+            {!localStorage.getItem("authToken") ? (
+              <div className="d-flex">
+                <Link className="btn btn-light text-success mx-1" to="/login">
+                  <b>Login</b>
+                </Link>
 
-              <Link className="btn btn-outline-light  mx-1" to="/signup">
-                Signup
-              </Link>
-            </div>
+                <Link className="btn btn-light text-success mx-1" to="/signup">
+                  <b>Signup</b>
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <Link className="btn btn-light text-success mx-1">
+                  <b>My Cart</b>
+                </Link>
+
+                <button
+                  className="btn btn-light text-danger  mx-1"
+                  onClick={handleLogout}>
+                  <b>Logout</b>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </nav>
