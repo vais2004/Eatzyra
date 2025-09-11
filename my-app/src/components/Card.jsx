@@ -15,7 +15,7 @@ let foodItem = props.foodItems;
     <div>
       <div className="card" style={{ width: "18rem", maxHeight: "380px" }}>
         <img
-          src={foodItem.imgUrl}
+          src={foodItem.img}
           className="card-img-top"
           alt="food item"
           style={{ maxHeight: "170px", objectFit: "fill" }}
