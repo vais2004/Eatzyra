@@ -156,7 +156,7 @@ export default function Home() {
                         className="col-12 col-md-6 col-lg-3">
                         <Card
                           key={filteredItem._id}
-                          foodItems={filteredItem}
+                          foodItem={filteredItem}
                           options={filteredItem.options[0]}
                         />
                       </div>
