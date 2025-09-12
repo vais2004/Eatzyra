@@ -46,9 +46,12 @@ export default function Cart() {
             ))}
           </tbody>
         </table>
-        <div>
-          <p className="fs-3">Total Price: {totalPrice}</p>
-        </div>
+
+        <p className="fs-3">Total Price: {totalPrice}</p>
+
+        <br />
+
+        <button className="btn btn-outline-success mt-5">Check Out</button>
       </div>
     </>
   );
