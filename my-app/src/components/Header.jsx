@@ -78,7 +78,7 @@ export default function Header() {
                 <button
                   className="btn btn-light text-danger  mx-1"
                   onClick={handleLogout}>
-                  Logout <i class="bi bi-box-arrow-right"></i>
+                  Logout <i className="bi bi-box-arrow-right"></i>
                 </button>
               </div>
             )}

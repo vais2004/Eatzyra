@@ -4,6 +4,7 @@ import { useDispatchCart, useCart } from "./ContextReducer";
 
 export default function Card(props) {
   let dispatch = useDispatchCart();
+  let data = useCart();
 
   let options = props.options;
   let priceOption = Object.keys(options);
@@ -12,25 +13,46 @@ export default function Card(props) {
   //const [size, setSize] = useState("");
   const [size, setSize] = useState(priceOption[0]);
 
-  const handleAddToCart = async () => {
-    //     console.log("Adding to cart:", {
-    //   id: props.foodItem._id,
-    //   name: props.foodItem.name,
-    //   price: finalPrice,
-    //   quantity: quantity,
-    //   size: size,
-    // });
-    await dispatch({
-      type: "ADD",
-      id: props.foodItem._id,
-      name: props.foodItem.name,
-      price: finalPrice,
-      quantity: quantity,
-      size: size,
-    });
-  };
-
   let finalPrice = quantity * parseInt(options[size]);
+
+  const handleAddToCart = async () => {
+    //console.log("cart data before:", data);
+
+    let food = data.find((item) => item.id === props.foodItem._id);
+    //console.log("Existing item in cart:", food);
+
+    if (food) {
+      if (food.size === size) {
+        await dispatch({
+          type: "UPDATE",
+          id: props.foodItem._id,
+          price: finalPrice,
+          quantity: quantity,
+        });
+      } else {
+        await dispatch({
+          type: "ADD",
+          id: props.foodItem._id,
+          name: props.foodItem.name,
+          price: finalPrice,
+          quantity: quantity,
+          size: size,
+        });
+      }
+    } else {
+      await dispatch({
+        type: "ADD",
+        id: props.foodItem._id,
+        name: props.foodItem.name,
+        price: finalPrice,
+        quantity: quantity,
+        size: size,
+      });
+    }
+
+    // this will still show "old" data (because React updates next render)
+    //console.log("cart data after dispatch (will update on next render):", data);
+  };
 
   return (
     <div>
@@ -72,9 +94,9 @@ export default function Card(props) {
               <b>Total Price:</b> ₹{finalPrice}/-
             </div>
           </div>
-          <Link onClick={handleAddToCart} className="btn btn-outline-success">
+          <button onClick={handleAddToCart} className="btn btn-outline-success">
             Add to Cart
-          </Link>
+          </button>
         </div>
       </div>
     </div>

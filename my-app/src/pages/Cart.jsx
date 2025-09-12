@@ -26,7 +26,7 @@ export default function Cart() {
           </thead>
           <tbody>
             {data.map((food, index) => (
-              <tr>
+              <tr key={food.id}>
                 <th scope="row">{index + 1}</th>
                 <td>{food.name}</td>
                 <td>{food.quantity}</td>
@@ -39,7 +39,7 @@ export default function Cart() {
                     onClick={() => {
                       dispatch({ type: "REMOVE", index: index });
                     }}>
-                    <i class="bi bi-trash"></i>
+                    <i className="bi bi-trash"></i>
                   </button>
                 </td>
               </tr>

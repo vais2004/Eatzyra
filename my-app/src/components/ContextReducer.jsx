@@ -18,6 +18,30 @@ const reducer = (state, action) => {
         },
       ];
 
+    case "REMOVE":
+      let newArr = [...state];
+      newArr.splice(action.index, 1);
+      return newArr;
+
+    case "UPDATE":
+      let arr = [...state];
+      arr.find((food, index) => {
+        if (food.id === action.id) {
+          console.log(
+            food.quantity,
+            parseInt(action.quantity),
+            action.price + food.price
+          );
+          arr[index] = {
+            ...food,
+            quantity: parseInt(action.quantity) + food.quantity,
+            price: action.price + food.price,
+          };
+        }
+        return arr;
+      });
+      return arr;
+
     default:
       console.log("Error in Reducer");
   }
@@ -28,7 +52,9 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartDispatchContext.Provider value={dispatch}>
-      <CartStateContext value={state}>{children}</CartStateContext>
+      <CartStateContext.Provider value={state}>
+        {children}
+      </CartStateContext.Provider>
     </CartDispatchContext.Provider>
   );
 };
