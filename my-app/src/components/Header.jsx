@@ -1,7 +1,11 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import Badge from "react-bootstrap/Badge";
+import { useCart } from "./ContextReducer";
+
 export default function Header() {
+  let data = useCart();
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("authToken");
@@ -64,14 +68,17 @@ export default function Header() {
               </div>
             ) : (
               <div>
-                <Link className="btn btn-light text-success mx-1">
-                  <b>My Cart</b>
+                <Link to="/cart" className="btn btn-light text-success mx-1">
+                  My Cart{" "}
+                  <Badge pill bg="danger">
+                    {data.length}
+                  </Badge>
                 </Link>
 
                 <button
                   className="btn btn-light text-danger  mx-1"
                   onClick={handleLogout}>
-                  <b>Logout</b>
+                  Logout <i class="bi bi-box-arrow-right"></i>
                 </button>
               </div>
             )}
