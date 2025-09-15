@@ -30,7 +30,7 @@ export default function Login() {
       setData({ email: "", password: "" });
     }
     if (response.ok) {
-      localStorage.setItem("userEmail",data.email);
+      localStorage.setItem("userEmail",result.email);
       localStorage.setItem("authToken", result.authToken);
       console.log(localStorage.getItem("authToken"));
       navigate("/");
