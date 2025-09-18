@@ -1,3 +1,109 @@
+// import React, { useState } from "react";
+// import { Link } from "react-router-dom";
+
+// export default function SignUp() {
+//   const [data, setData] = useState({
+//     name: "",
+//     email: "",
+//     password: "",
+//     location: "",
+//   });
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     const response = await fetch("http://localhost:5000/api/createuser", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         name: data.name,
+//         email: data.email,
+//         password: data.password,
+//         location: data.location,
+//       }),
+//     });
+
+//     const result = await response.json();
+//     console.log(result);
+
+//     if (response.ok) {
+//       setData({ name: "", email: "", password: "", location: "" });
+//     }
+//   };
+
+//   return (
+//     <>
+//       <div className="container">
+//         <form onSubmit={handleSubmit}>
+//           <div className="mb-3">
+//             <label htmlFor="name" className="form-label">
+//               Name
+//             </label>
+//             <input
+//               type="text"
+//               className="form-control"
+//               name="name"
+//               value={data.name}
+//               onChange={(e) => setData({ ...data, name: e.target.value })}
+//             />
+//           </div>
+//           <div className="mb-3">
+//             <label htmlFor="exampleInputEmail1" className="form-label">
+//               Email address
+//             </label>
+//             <input
+//               type="email"
+//               className="form-control"
+//               id="exampleInputEmail1"
+//               name="email"
+//               value={data.email}
+//               aria-describedby="emailHelp"
+//               onChange={(e) => setData({ ...data, email: e.target.value })}
+//             />
+//             <div id="emailHelp" className="form-text">
+//               We'll never share your email with anyone else.
+//             </div>
+//           </div>
+//           <div className="mb-3">
+//             <label htmlFor="exampleInputPassword1" className="form-label">
+//               Password
+//             </label>
+//             <input
+//               type="password"
+//               className="form-control"
+//               id="exampleInputPassword1"
+//               name="password"
+//               value={data.password}
+//               onChange={(e) => setData({ ...data, password: e.target.value })}
+//             />
+//           </div>
+
+//           <div className="mb-3">
+//             <label htmlFor="exampleInputLocation" className="form-label">
+//               Address
+//             </label>
+//             <input
+//               type="text"
+//               className="form-control"
+//               id="exampleInputLocation"
+//               name="location"
+//               value={data.location}
+//               onChange={(e) => setData({ ...data, location: e.target.value })}
+//             />
+//           </div>
+
+//           <button type="submit" className="btn btn-outline-success me-4">
+//             Submit
+//           </button>
+//           <Link to="/login" className="btn btn-outline-secondary">
+//             Already a user
+//           </Link>
+//         </form>
+//       </div>
+//     </>
+//   );
+// }
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -16,12 +122,7 @@ export default function SignUp() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-        password: data.password,
-        location: data.location,
-      }),
+      body: JSON.stringify(data),
     });
 
     const result = await response.json();
@@ -33,12 +134,13 @@ export default function SignUp() {
   };
 
   return (
-    <>
-      <div className="container">
+    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
+      <div className="card shadow-lg p-4" style={{ maxWidth: "500px", width: "100%" }}>
+        <h3 className="text-center mb-4">Sign Up</h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
-              Name
+              Full Name
             </label>
             <input
               type="text"
@@ -46,6 +148,7 @@ export default function SignUp() {
               name="name"
               value={data.name}
               onChange={(e) => setData({ ...data, name: e.target.value })}
+              required
             />
           </div>
           <div className="mb-3">
@@ -60,6 +163,7 @@ export default function SignUp() {
               value={data.email}
               aria-describedby="emailHelp"
               onChange={(e) => setData({ ...data, email: e.target.value })}
+              required
             />
             <div id="emailHelp" className="form-text">
               We'll never share your email with anyone else.
@@ -76,9 +180,9 @@ export default function SignUp() {
               name="password"
               value={data.password}
               onChange={(e) => setData({ ...data, password: e.target.value })}
+              required
             />
           </div>
-
           <div className="mb-3">
             <label htmlFor="exampleInputLocation" className="form-label">
               Address
@@ -90,17 +194,19 @@ export default function SignUp() {
               name="location"
               value={data.location}
               onChange={(e) => setData({ ...data, location: e.target.value })}
+              required
             />
           </div>
 
-          <button type="submit" className="btn btn-outline-success me-4">
-            Submit
+          <button type="submit" className="btn btn-primary w-100 mb-3">
+            Sign Up
           </button>
-          <Link to="/login" className="btn btn-outline-secondary">
-            Already a user
-          </Link>
+          <div className="text-center">
+            <span>Already have an account? </span>
+            <Link to="/login">Login here</Link>
+          </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }
