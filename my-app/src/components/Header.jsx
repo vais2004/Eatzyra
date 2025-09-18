@@ -48,7 +48,7 @@ export default function Header() {
                   <Link
                     className="nav-link active fs-5 link-light"
                     aria-current="page"
-                    to="/">
+                    to="/my-order">
                     My Orders
                   </Link>
                 </li>

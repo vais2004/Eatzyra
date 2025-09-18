@@ -1,11 +1,13 @@
 import "./App.css";
 
 import Home from "./pages/Home";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import SignUp from "./components/SignUp";
+//import SignUp from "./components/SignUp";
 import { CartProvider } from "./components/ContextReducer";
 import Cart from "./pages/Cart";
+import SignUp from "./pages/SignUp";
+import MyOrder from "./pages/MyOrder";
 
 function App() {
   return (
@@ -16,7 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/cart" element={<Cart />} />
-        
+          <Route path="/my-order" element={<MyOrder />} />
         </Routes>
       </Router>
     </CartProvider>

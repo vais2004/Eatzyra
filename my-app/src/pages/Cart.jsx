@@ -1,4 +1,8 @@
 import React from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+
 import { useCart, useDispatchCart } from "../components/ContextReducer";
 
 export default function Cart() {
@@ -72,6 +76,7 @@ const handleCheckOut = async () => {
 
   return (
     <>
+     <Header />
       <div className="container m-auto mt-5 table-responsive table responsive-sm table-responsive-md">
         <table className="table table-hover">
           <thead className="text-success fs-4">
@@ -113,6 +118,7 @@ const handleCheckOut = async () => {
 
         <button className="btn btn-outline-success mt-5" onClick={handleCheckOut}>Check Out</button>
       </div>
+      <Footer/>
     </>
   );
 }
