@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { jsx } from "react/jsx-runtime";
+
 
 export default function Login() {
   let navigate = useNavigate();
@@ -29,12 +29,22 @@ export default function Login() {
     if (response.ok) {
       setData({ email: "", password: "" });
     }
-    if (response.ok) {
-      localStorage.setItem("userEmail",result.email);
-      localStorage.setItem("authToken", result.authToken);
-      console.log(localStorage.getItem("authToken"));
-      navigate("/");
-    }
+    // if (response.ok) {
+    //   localStorage.setItem("userEmail",data.email);
+    //   localStorage.setItem("authToken", result.authToken);
+    //   console.log(localStorage.getItem("authToken"));
+    //   navigate("/");
+    // }
+if (response.ok) {
+  // Store the email from the form data before resetting
+  localStorage.setItem("userEmail", data.email);
+  localStorage.setItem("authToken", result.authToken);
+  console.log("Stored email:", data.email);
+  
+  // Then reset the form
+  setData({ email: "", password: "" });
+  navigate("/");
+}
   };
   
   return (

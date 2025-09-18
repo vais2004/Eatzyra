@@ -10,8 +10,43 @@ export default function Cart() {
 
   let totalPrice = data.reduce((total, food) => total + food.price, 0);
 
-  const handleCheckOut = async () => {
-    let userEmail = localStorage.getItem("userEmail");
+  // const handleCheckOut = async () => {
+  //   let userEmail = localStorage.getItem("userEmail");
+  //   const response = await fetch("http://localhost:5000/api/order-data", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       order_data: data,
+  //       email: userEmail,
+  //       order_date: new Date().toDateString(),
+  //     }),
+  //   });
+
+  //   console.log("Order Response:", response);
+
+  //   if (response.status === 200) {
+  //     dispatch({ type: "DROP" });
+  //   }
+  // };
+const handleCheckOut = async () => {
+  let userEmail = localStorage.getItem("userEmail");
+  console.log("User email from localStorage:", userEmail); // Debug log
+   console.log("Cart items being ordered:", data);
+  // Check if email exists
+  if (!userEmail) {
+    alert("Please log in to complete your order");
+    return;
+  }
+
+  // Check if cart data exists
+  if (data.length === 0) {
+    alert("Your cart is empty");
+    return;
+  }
+
+  try {
     const response = await fetch("http://localhost:5000/api/order-data", {
       method: "POST",
       headers: {
@@ -24,12 +59,16 @@ export default function Cart() {
       }),
     });
 
-    console.log("Order Response:", response);
+    const responseData = await response.json();
+    console.log("Order Response:", responseData);
 
     if (response.status === 200) {
       dispatch({ type: "DROP" });
     }
-  };
+  } catch (error) {
+    console.error("Checkout error:", error);
+  }
+};
 
   return (
     <>
@@ -47,7 +86,7 @@ export default function Cart() {
           </thead>
           <tbody>
             {data.map((food, index) => (
-              <tr key={food.id}>
+              <tr key={`${food.id}-${index}`}>
                 <th scope="row">{index + 1}</th>
                 <td>{food.name}</td>
                 <td>{food.quantity}</td>
