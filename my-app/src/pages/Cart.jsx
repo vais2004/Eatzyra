@@ -22,17 +22,20 @@ export default function Cart() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/order-data", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          order_data: data,
-          email: userEmail,
-          order_date: new Date().toDateString(),
-        }),
-      });
+      const response = await fetch(
+        "https://eatzyra-backend.vercel.app/api/order-data",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            order_data: data,
+            email: userEmail,
+            order_date: new Date().toDateString(),
+          }),
+        }
+      );
 
       const responseData = await response.json();
       console.log("Order Response:", responseData);

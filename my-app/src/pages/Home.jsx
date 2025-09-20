@@ -11,12 +11,15 @@ export default function Home() {
 
   const loadData = async () => {
     try {
-      let response = await fetch("http://localhost:5000/api/food-data", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let response = await fetch(
+        "https://eatzyra-backend.vercel.app/api/food-data",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       let json = await response.json();
       console.log(json);
