@@ -39,12 +39,20 @@ export default function Card(props) {
 
   return (
     <div className="d-flex justify-content-center mb-4">
-      <div className="card shadow-sm h-100" style={{ maxWidth: "280px", width: "100%" }}>
+      <div
+        className="card shadow-sm h-100"
+        style={{ maxWidth: "280px", width: "100%" }}>
         <img
           src={props.foodItem.img}
           className="card-img-top"
           alt="food item"
-          style={{ maxHeight: "170px", objectFit: "cover", width: "100%" }}
+          style={{
+            width: "100%",
+            height: "180px",
+            objectFit: "cover",
+            borderTopLeftRadius: "0.25rem",
+            borderTopRightRadius: "0.25rem",
+          }}
         />
         <div className="card-body d-flex flex-column">
           <h5 className="card-title">{props.foodItem.name}</h5>
@@ -52,8 +60,7 @@ export default function Card(props) {
           <div className="d-flex flex-column flex-sm-row align-items-center mt-2">
             <select
               className="m-1 text-center bg-success text-light rounded"
-              onChange={(e) => setQuantity(parseInt(e.target.value))}
-            >
+              onChange={(e) => setQuantity(parseInt(e.target.value))}>
               {Array.from(Array(10), (e, index) => (
                 <option key={index + 1} value={index + 1}>
                   {index + 1}
@@ -63,8 +70,7 @@ export default function Card(props) {
 
             <select
               className="m-1 text-center bg-success text-light rounded"
-              onChange={(e) => setSize(e.target.value)}
-            >
+              onChange={(e) => setSize(e.target.value)}>
               {priceOption.map((data) => (
                 <option key={data} value={data}>
                   {data}
@@ -81,8 +87,7 @@ export default function Card(props) {
             onClick={handleToggleCart}
             className={`btn ${
               foodInCart ? "btn-danger" : "btn-outline-success"
-            } mt-2 w-100`}
-          >
+            } mt-2 w-100`}>
             {foodInCart ? "Remove from Cart" : "Add to Cart"}
           </button>
         </div>
