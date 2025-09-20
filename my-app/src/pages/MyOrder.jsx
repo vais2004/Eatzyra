@@ -30,6 +30,7 @@ export default function MyOrder() {
       <Header />
       <div className="container py-4">
         <h2 className="text-center mb-4">My Orders</h2>
+
         {!orderData || !orderData.orderData ? (
           <p className="text-center fs-5">No orders found.</p>
         ) : (
@@ -41,7 +42,12 @@ export default function MyOrder() {
                 {/* Order Date */}
                 <div className="text-center mb-3">
                   <h5 className="bg-light p-2 rounded">
-                    {order[0]?.Order_date || "Unknown Date"}
+                    {order[0]?.Order_date
+                      ? new Date(order[0].Order_date).toLocaleString("en-IN", {
+                          dateStyle: "medium",
+                          timeStyle: "short",
+                        })
+                      : "Unknown Date"}
                   </h5>
                   <hr />
                 </div>
@@ -51,34 +57,43 @@ export default function MyOrder() {
                   {order.slice(1).map((item, idx) => (
                     <div
                       key={idx}
-                      className="col-12 col-md-6 col-lg-3 d-flex justify-content-center">
-                      <div
-                        className="card shadow-sm h-100"
-                        style={{ width: "16rem" }}>
-                        {item.img ? (
-                          <img
-                            src={item.img}
-                            className="card-img-top"
-                            alt={item.name}
-                            style={{ maxHeight: "180px", objectFit: "cover" }}
-                          />
-                        ) : (
-                          <div
-                            className="card-img-top bg-secondary d-flex align-items-center justify-content-center text-white"
-                            style={{ height: "180px" }}>
-                            No Image
+                      className="col-12 col-md-6 col-lg-4 d-flex justify-content-center"
+                    >
+                      <div className="card mb-3 shadow-sm w-100">
+                        <div className="row g-0">
+                          {/* Image Section */}
+                          <div className="col-4 col-md-4">
+                            {item.img ? (
+                              <img
+                                src={item.img}
+                                alt={item.name}
+                                className="img-fluid rounded-start"
+                                style={{ maxHeight: "150px", objectFit: "cover" }}
+                              />
+                            ) : (
+                              <div
+                                className="bg-secondary text-white d-flex align-items-center justify-content-center rounded-start"
+                                style={{ height: "150px" }}
+                              >
+                                No Image
+                              </div>
+                            )}
                           </div>
-                        )}
-                        <div className="card-body d-flex flex-column">
-                          <h5 className="card-title">{item.name}</h5>
-                          <div className="mt-auto">
-                            <p className="mb-1">
-                              <strong>Size:</strong> {item.size}
-                            </p>
-                            <p className="mb-1">
-                              <strong>Qty:</strong> {item.quantity}
-                            </p>
-                            <p className="mb-0 fw-bold">₹{item.price}/-</p>
+
+                          {/* Details Section */}
+                          <div className="col-8 col-md-8">
+                            <div className="card-body">
+                              <h5 className="card-title">{item.name}</h5>
+                              <p className="card-text mb-1">
+                                <strong>Size:</strong> {item.size}
+                              </p>
+                              <p className="card-text mb-1">
+                                <strong>Qty:</strong> {item.quantity}
+                              </p>
+                              <p className="card-text fw-bold mb-0">
+                                ₹{item.price}/-
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>

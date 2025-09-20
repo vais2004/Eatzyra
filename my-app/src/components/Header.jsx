@@ -69,7 +69,7 @@ export default function Header() {
             ) : (
               <div>
                 <Link to="/cart" className="btn btn-light text-success mx-1">
-                  My Cart <i class="bi bi-cart4 text-success"></i>{" "}
+                  My Cart <i className="bi bi-cart4 text-success"></i>{" "}
                   <Badge pill bg="danger">
                     {data.length}
                   </Badge>

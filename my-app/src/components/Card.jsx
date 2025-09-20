@@ -13,21 +13,18 @@ export default function Card(props) {
 
   let finalPrice = quantity * parseInt(options[size]);
 
-  // check if item with same id + size already in cart
   let foodInCart = data.find(
     (item) => item.id === props.foodItem._id && item.size === size
   );
 
   const handleToggleCart = async () => {
     if (foodInCart) {
-      // remove item from cart
       await dispatch({
         type: "REMOVE",
         id: props.foodItem._id,
         size: size,
       });
     } else {
-      // add item to cart
       await dispatch({
         type: "ADD",
         id: props.foodItem._id,
@@ -41,21 +38,22 @@ export default function Card(props) {
   };
 
   return (
-    <div>
-      <div className="card" style={{ width: "18rem", maxHeight: "380px" }}>
+    <div className="d-flex justify-content-center mb-4">
+      <div className="card shadow-sm h-100" style={{ maxWidth: "280px", width: "100%" }}>
         <img
           src={props.foodItem.img}
           className="card-img-top"
           alt="food item"
-          style={{ maxHeight: "170px", objectFit: "fill" }}
+          style={{ maxHeight: "170px", objectFit: "cover", width: "100%" }}
         />
-        <div className="card-body">
+        <div className="card-body d-flex flex-column">
           <h5 className="card-title">{props.foodItem.name}</h5>
 
-          <div className="container w-100">
+          <div className="d-flex flex-column flex-sm-row align-items-center mt-2">
             <select
-              className="m-2 h-100 col-2 text-center bg-success text-light rounded"
-              onChange={(e) => setQuantity(parseInt(e.target.value))}>
+              className="m-1 text-center bg-success text-light rounded"
+              onChange={(e) => setQuantity(parseInt(e.target.value))}
+            >
               {Array.from(Array(10), (e, index) => (
                 <option key={index + 1} value={index + 1}>
                   {index + 1}
@@ -64,27 +62,27 @@ export default function Card(props) {
             </select>
 
             <select
-              className="m-2 h-100 col-5 text-center bg-success text-light rounded"
-              onChange={(e) => setSize(e.target.value)}>
+              className="m-1 text-center bg-success text-light rounded"
+              onChange={(e) => setSize(e.target.value)}
+            >
               {priceOption.map((data) => (
                 <option key={data} value={data}>
                   {data}
                 </option>
               ))}
             </select>
-
-            <br />
-            <div className="d-inline h-100">
-              <b>Total Price:</b> ₹{finalPrice}/-
-            </div>
           </div>
 
-          {/* Toggle button */}
+          <div className="mt-2">
+            <b>Total Price:</b> ₹{finalPrice}/-
+          </div>
+
           <button
             onClick={handleToggleCart}
             className={`btn ${
               foodInCart ? "btn-danger" : "btn-outline-success"
-            } mt-2`}>
+            } mt-2 w-100`}
+          >
             {foodInCart ? "Remove from Cart" : "Add to Cart"}
           </button>
         </div>
