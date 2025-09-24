@@ -146,39 +146,40 @@ export default function Cart() {
     }));
   };
 
-  const handleCheckOut = async (e) => {
-    e.preventDefault();
-    const userEmail = localStorage.getItem("userEmail");
-    if (!userEmail) return alert("Please log in to complete your order");
-    if (data.length === 0) return alert("Your cart is empty");
+const handleCheckOut = async (e) => {
+  e.preventDefault();
+  const userEmail = localStorage.getItem("userEmail");
+  if (!userEmail) return alert("Please log in to complete your order");
+  if (data.length === 0) return alert("Your cart is empty");
 
-    try {
-      const response = await fetch(
-        "https://eatzyra-backend.vercel.app/api/order-data",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            order_data: data,
-            email: userEmail,
-            order_date: new Date().toISOString(),
-            address: formData,
-            final_price: finalPrice,
-          }),
-        }
-      );
-
-      const responseData = await response.json();
-      console.log("Order Response:", responseData);
-
-      if (response.status === 200) {
-        alert("🎉 Order placed successfully!");
-        dispatch({ type: "DROP" });
+  try {
+    const response = await fetch(
+      "https://eatzyra-backend.vercel.app/api/order-data",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          order_data: data,
+          email: userEmail,
+          order_date: new Date().toISOString(),
+          address: formData,
+          final_price: finalPrice,
+          paymentMethod: formData.paymentMethod // Added this line
+        }),
       }
-    } catch (error) {
-      console.error("Checkout error:", error);
+    );
+
+    const responseData = await response.json();
+    console.log("Order Response:", responseData);
+
+    if (response.status === 200) {
+      alert("🎉 Order placed successfully!");
+      dispatch({ type: "DROP" });
     }
-  };
+  } catch (error) {
+    console.error("Checkout error:", error);
+  }
+};
 
   return (
     <>
