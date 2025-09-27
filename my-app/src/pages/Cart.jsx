@@ -1,118 +1,3 @@
-// import React from "react";
-// import Header from "../components/Header";
-// import Footer from "../components/Footer";
-// import { useCart, useDispatchCart } from "../components/ContextReducer";
-
-// export default function Cart() {
-//   const data = useCart();
-//   const dispatch = useDispatchCart();
-
-//   const totalPrice = data.reduce((total, food) => total + food.price, 0);
-
-//   const handleCheckOut = async () => {
-//     const userEmail = localStorage.getItem("userEmail");
-//     if (!userEmail) return alert("Please log in to complete your order");
-//     if (data.length === 0) return alert("Your cart is empty");
-
-//     try {
-//       const response = await fetch(
-//         "https://eatzyra-backend.vercel.app/api/order-data",
-//         {
-//           method: "POST",
-//           headers: { "Content-Type": "application/json" },
-//           body: JSON.stringify({
-//             order_data: data,
-//             email: userEmail,
-//             order_date: new Date().toISOString(),
-//           }),
-//         }
-//       );
-
-//       const responseData = await response.json();
-//       console.log("Order Response:", responseData);
-
-//       if (response.status === 200) dispatch({ type: "DROP" });
-//     } catch (error) {
-//       console.error("Checkout error:", error);
-//     }
-//   };
-
-//   return (
-//     <>
-//       <Header />
-//       <div className="container my-5">
-//         {data.length === 0 ? (
-//           <p className="text-center fs-5 my-5">Your cart is empty! 🛒</p>
-//         ) : (
-//           <>
-//             {/* Responsive Table */}
-//             <div className="table-responsive">
-//               <table className="table table-hover align-middle text-center">
-//                 <thead className="text-success fs-6">
-//                   <tr>
-//                     <th>#</th>
-//                     <th>Image</th>
-//                     <th>Name</th>
-//                     <th>Quantity</th>
-//                     <th>Option</th>
-//                     <th>Amount</th>
-//                     <th>Action</th>
-//                   </tr>
-//                 </thead>
-//                 <tbody>
-//                   {data.map((food, index) => (
-//                     <tr key={`${food.id}-${index}`}>
-//                       <th scope="row">{index + 1}</th>
-//                       <td>
-//                         <img
-//                           src={food.img}
-//                           alt={food.name}
-//                           className="img-fluid rounded"
-//                           style={{
-//                             maxHeight: "50px",
-//                             width: "70px",
-//                             objectFit: "cover",
-//                             border: "1px solid #ccc",
-//                           }}
-//                         />
-//                       </td>
-//                       <td>{food.name}</td>
-//                       <td>{food.quantity}</td>
-//                       <td>{food.size}</td>
-//                       <td>₹{food.price}</td>
-//                       <td>
-//                         <button
-//                           type="button"
-//                           className="btn btn-danger btn-sm"
-//                           onClick={() => dispatch({ type: "REMOVE", index })}
-//                         >
-//                           <i className="bi bi-trash"></i>
-//                         </button>
-//                       </td>
-//                     </tr>
-//                   ))}
-//                 </tbody>
-//               </table>
-//             </div>
-
-//             {/* Total and Checkout Button */}
-//             <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3 gap-3">
-//               <p className="fs-5 mb-0">Total Price: ₹{totalPrice}</p>
-//               <button
-//                 className="btn btn-outline-success w-100 w-md-auto"
-//                 onClick={handleCheckOut}
-//               >
-//                 Check Out
-//               </button>
-//             </div>
-//           </>
-//         )}
-//       </div>
-//       <Footer />
-//     </>
-//   );
-// }
-
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -146,79 +31,48 @@ export default function Cart() {
     }));
   };
 
-// const handleCheckOut = async (e) => {
-//   e.preventDefault();
-//   const userEmail = localStorage.getItem("userEmail");
-//   if (!userEmail) return alert("Please log in to complete your order");
-//   if (data.length === 0) return alert("Your cart is empty");
+  const handleCheckOut = async (e) => {
+    e.preventDefault();
+    const userEmail = localStorage.getItem("userEmail"); // This line was missing
+    if (!userEmail) return alert("Please log in to complete your order");
+    if (data.length === 0) return alert("Your cart is empty");
 
-//   try {
-//     const response = await fetch(
-//       "https://eatzyra-backend.vercel.app/api/order-data",
-//       {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({
-//           order_data: data,
-//           email: userEmail,
-//           order_date: new Date().toISOString(),
-//           address: formData,
-//           final_price: finalPrice,
-//           paymentMethod: formData.paymentMethod // Added this line
-//         }),
-//       }
-//     );
+    try {
+      const response = await fetch(
+        "https://eatzyra-backend.vercel.app/api/order-data",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            order_data: data,
+            email: userEmail,
+            order_date: new Date().toISOString(),
+            address: formData,
+            final_price: finalPrice,
+            paymentMethod: formData.paymentMethod,
+          }),
+        }
+      );
 
-//     const responseData = await response.json();
-//     console.log("Order Response:", responseData);
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Server error: ${response.status} - ${errorText}`);
+      }
 
-//     if (response.status === 200) {
-//       alert("🎉 Order placed successfully!");
-//       dispatch({ type: "DROP" });
-//     }
-//   } catch (error) {
-//     console.error("Checkout error:", error);
-//   }
-// };
-const handleCheckOut = async (e) => {
-  e.preventDefault();
-  const userEmail = localStorage.getItem("userEmail"); // This line was missing
-  if (!userEmail) return alert("Please log in to complete your order");
-  if (data.length === 0) return alert("Your cart is empty");
+      const responseData = await response.json();
+      console.log("Order Response:", responseData);
 
-  try {
-    const response = await fetch("https://eatzyra-backend.vercel.app/api/order-data", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        order_data: data,
-        email: userEmail,
-        order_date: new Date().toISOString(),
-        address: formData,
-        final_price: finalPrice,
-        paymentMethod: formData.paymentMethod
-      }),
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Server error: ${response.status} - ${errorText}`);
+      if (responseData.success) {
+        alert("🎉 Order placed successfully!");
+        dispatch({ type: "DROP" });
+      } else {
+        alert(`Order failed: ${responseData.error}`);
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      alert("Checkout failed. Please check the console for details.");
     }
-
-    const responseData = await response.json();
-    console.log("Order Response:", responseData);
-
-    if (responseData.success) {
-      alert("🎉 Order placed successfully!");
-      dispatch({ type: "DROP" });
-    } else {
-      alert(`Order failed: ${responseData.error}`);
-    }
-  } catch (error) {
-    console.error("Checkout error:", error);
-    alert("Checkout failed. Please check the console for details.");
-  }
-};
+  };
 
   return (
     <>
@@ -268,8 +122,7 @@ const handleCheckOut = async (e) => {
                           <button
                             type="button"
                             className="btn btn-danger btn-sm"
-                            onClick={() => dispatch({ type: "REMOVE", index })}
-                          >
+                            onClick={() => dispatch({ type: "REMOVE", index })}>
                             <i className="bi bi-trash"></i>
                           </button>
                         </td>
@@ -286,9 +139,13 @@ const handleCheckOut = async (e) => {
                 <h5 className="mb-3">Order Summary</h5>
                 <p>Total Items Price: ₹{totalPrice}</p>
                 <p>Discount: -₹{discount.toFixed(2)}</p>
-                <h6 className="fw-bold">Final Price: ₹{finalPrice.toFixed(2)}</h6>
+                <h6 className="fw-bold">
+                  Final Price: ₹{finalPrice.toFixed(2)}
+                </h6>
                 {discount > 0 && (
-                  <p className="text-success">You saved ₹{discount.toFixed(2)} 🎉</p>
+                  <p className="text-success">
+                    You saved ₹{discount.toFixed(2)} 🎉
+                  </p>
                 )}
               </div>
 
@@ -396,13 +253,12 @@ const handleCheckOut = async (e) => {
                       onChange={handleChange}
                       className="form-check-input"
                     />
-                    <label className="form-check-label">Credit/Debit Card</label>
+                    <label className="form-check-label">
+                      Credit/Debit Card
+                    </label>
                   </div>
 
-                  <button
-                    className="btn btn-success w-100 mt-3"
-                    type="submit"
-                  >
+                  <button className="btn btn-success w-100 mt-3" type="submit">
                     Place Order
                   </button>
                 </form>
