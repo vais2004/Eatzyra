@@ -11,29 +11,6 @@ export default function Home() {
   const [foodType, setFoodType] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  // const loadData = async () => {
-  //   try {
-  //     let response = await fetch(
-  //       "https://eatzyra-backend.vercel.app/api/food-data",
-  //       {
-  //         method: "GET",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-  //     let json = await response.json();
-  //     setFoodItem(json.foodItems || []);
-  //     setFoodCat(json.categories || []);
-  //   } catch (err) {
-  //     console.error("Error loading data:", err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   loadData();
-  // }, []);
-
   const loadData = async () => {
     try {
       let response = await fetch(
@@ -47,13 +24,13 @@ export default function Home() {
       );
       let json = await response.json();
 
-      // Handle both response formats
+      // handle both response formats
       if (Array.isArray(json)) {
-        // If response is just an array (current backend)
+        // if response is just an array
         setFoodItem(json || []);
         setFoodCat([]); // Empty categories for now
       } else {
-        // If response has foodItems and categories (expected format)
+        // if response has foodItems and categories
         setFoodItem(json.foodItems || []);
         setFoodCat(json.categories || []);
       }
