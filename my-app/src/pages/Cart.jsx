@@ -98,7 +98,7 @@ export default function Cart() {
             <p className="text-center fs-4 my-5">Your cart is empty! 🛒</p>
             <p className="mb-3 text-muted">{randomQuote}</p>
             <Link to="/" className="btn btn-outline-success">
-              Order Yummy Food🍴
+              Order Yummy Food 🍴
             </Link>
           </div>
         ) : (

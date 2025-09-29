@@ -219,7 +219,7 @@ export default function Home() {
               item.CategoryName === selectedCategory) &&
             item.name.toLowerCase().includes(search.toLowerCase()) &&
             (foodType === "" || item.foodType === foodType)
-        ).length === 0 && <p className="m-3">No such data found!</p>}
+        ).length === 0 && <p className="alert alert-primary m-3">loading...</p>}
       </div>
 
       <Footer />
