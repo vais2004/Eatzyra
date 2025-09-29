@@ -164,22 +164,23 @@ export default function Home() {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      <label className="fs-4 m-4">Filters:-</label>
+
       {/* Filters */}
-      <div className="container my-3 d-flex flex-wrap justify-content-start gap-2">
+      <div className="container my-3 gap-2">
         {/* Veg / Non-Veg */}
-        <label className="me-2 fs-5">Food Type:</label>
+        <label className="me-2 fs-5">Filter by Food Type:</label>
         <select
-          className="form-select w-auto col-4"
+          className="form-select  w-25"
           value={foodType}
           onChange={(e) => setFoodType(e.target.value)}>
           <option value="">All Types</option>
           <option value="veg">Veg</option>
           <option value="non-veg">Non-Veg</option>
         </select>
-
+        <br />
+        <label className="me-2 fs-5">Filter by Category:</label>
         <select
-          className="form-select w-auto"
+          className="form-select w-25"
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}>
           <option value="">All Categories</option>
