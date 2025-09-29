@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useDispatchCart, useCart } from "./ContextReducer";
+import { useNavigate } from "react-router-dom";
 
 export default function Card(props) {
   let dispatch = useDispatchCart();
   let data = useCart();
+  let navigate = useNavigate()
 
   let options = props.options;
   let priceOption = Object.keys(options);
@@ -18,6 +20,11 @@ export default function Card(props) {
   );
 
   const handleToggleCart = async () => {
+    if (!localStorage.getItem("authToken")) {
+      navigate("/login");
+      return;
+    }
+
     if (foodInCart) {
       await dispatch({
         type: "REMOVE",
