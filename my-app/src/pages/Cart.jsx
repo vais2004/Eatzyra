@@ -2,8 +2,23 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useCart, useDispatchCart } from "../components/ContextReducer";
-
+import { Link } from "react-router-dom";
 export default function Cart() {
+  const quotes = [
+    "🛒✨ Your cart is empty… let’s fill it with yummy food! 🍔🍕🍝",
+    "🍔🥗🍕 Delicious meals are waiting… add them to your cart! 😋",
+    "😋🍴 An empty cart is a sad cart… let’s fix that! 🥘",
+    "🚀🍛 Good food = good mood… start ordering now! ❤️",
+    "🌮🍟🍩Happiness is just a meal away. Add something tasty!",
+    "🥳🍽️ Don’t keep your stomach waiting… order your favorite dish! 🍲",
+    "🍕❤️ Your taste buds deserve some love… feed your cart!",
+    "🌯🍝 Empty cart, full dreams… let’s make them delicious! 😋",
+    "🥗🍔 Food is happiness… start adding your favorite meals! 🥳",
+    "🍛💛 Life is short, eat good food… fill your cart now! 🛒",
+  ];
+
+  const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
   const data = useCart();
   const dispatch = useDispatchCart();
 
@@ -79,7 +94,13 @@ export default function Cart() {
       <Header />
       <div className="container my-5">
         {data.length === 0 ? (
-          <p className="text-center fs-5 my-5">Your cart is empty! 🛒</p>
+          <div className="d-flex flex-column justify-content-center align-items-center text-center">
+            <p className="text-center fs-4 my-5">Your cart is empty! 🛒</p>
+            <p className="mb-3 text-muted">{randomQuote}</p>
+            <Link to="/" className="btn btn-outline-success">
+              Order Yummy Food🍴
+            </Link>
+          </div>
         ) : (
           <div className="row">
             {/* Cart Table */}
