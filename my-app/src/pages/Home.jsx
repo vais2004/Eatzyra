@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -45,6 +46,7 @@ export default function Home() {
   return (
     <div>
       <Header />
+      <ToastContainer position="top-right" className="mt-5" autoClose={3000} />
 
       {/* Carousel */}
       <div
