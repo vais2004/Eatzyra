@@ -18,7 +18,7 @@ export default function MyOrder() {
         );
         const result = await response.json();
 
-        // Handle the new response structure
+        // handle the new response
         if (result.success) {
           setOrderData(result.orders || []);
         } else {
@@ -44,7 +44,6 @@ export default function MyOrder() {
         ) : (
           orderData.map((order, index) => (
             <div key={index} className="mb-5 border p-3 rounded">
-              {/* Order Header */}
               <div className="text-center mb-3">
                 <h5 className="bg-light p-2 rounded">
                   Order Date:{" "}
@@ -65,7 +64,6 @@ export default function MyOrder() {
                 <hr />
               </div>
 
-              {/* Order Items */}
               <div className="row g-3">
                 {order.order_data.map((item, idx) => (
                   <div
@@ -73,7 +71,6 @@ export default function MyOrder() {
                     className="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
                     <div className="card mb-3 shadow-sm w-100">
                       <div className="row g-0">
-                        {/* Image Section */}
                         <div className="col-4 col-md-4">
                           {item.img ? (
                             <img
@@ -91,7 +88,6 @@ export default function MyOrder() {
                           )}
                         </div>
 
-                        {/* Details Section */}
                         <div className="col-8 col-md-8">
                           <div className="card-body">
                             <h5 className="card-title">{item.name}</h5>
@@ -112,7 +108,6 @@ export default function MyOrder() {
                 ))}
               </div>
 
-              {/* Address Information */}
               <div className="mt-3 p-3 bg-light rounded">
                 <h6>Delivery Address:</h6>
                 <p className="mb-1">{order.address?.fullName}</p>

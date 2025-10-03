@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Card from "../components/Card"; // ✅ Card should be imported, not written in this file
+import Card from "../components/Card";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function Home() {
@@ -25,7 +25,6 @@ export default function Home() {
       );
       let json = await response.json();
 
-      // ✅ Fix: handle both array or object API response
       if (Array.isArray(json)) {
         setFoodItem(json || []);
         setFoodCat([]);
@@ -47,13 +46,10 @@ export default function Home() {
       <Header />
       <ToastContainer position="top-right" className="mt-5" autoClose={3000} />
 
-      {/* ================= CAROUSEL ================= */}
       <div
         id="carouselExampleFade"
         className="carousel slide carousel-fade position-relative"
         data-bs-ride="carousel">
-        
-        {/* Search bar overlay */}
         <div
           className="position-absolute bottom-0 start-50 translate-middle-x w-75 mb-4 pb-4"
           style={{ zIndex: 10, maxWidth: "90%" }}>
@@ -70,7 +66,6 @@ export default function Home() {
         </div>
 
         <div className="carousel-inner" style={{ maxHeight: "500px" }}>
-          {/* ✅ All carousel items are unchanged */}
           <div className="carousel-item active">
             <img
               src="https://media.istockphoto.com/id/1022778136/photo/chicken-and-fish-tikka-kabab-pune-india.jpg?s=612x612&w=0&k=20&c=LBUQ4BBDEDsrk4nSC_XA7meiavlfeXIUUvVWaYrpIGU="
@@ -145,7 +140,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Carousel controls */}
         <button
           className="carousel-control-prev"
           type="button"
@@ -168,9 +162,7 @@ export default function Home() {
         </button>
       </div>
 
-      {/* ================= FILTERS ================= */}
       <div className="container my-3 gap-2">
-        {/* Food Type Filter */}
         <label className="me-2 fs-5">Filter by Food Type:</label>
         <select
           className="form-select w-25"
@@ -183,7 +175,6 @@ export default function Home() {
 
         <br />
 
-        {/* Category Filter */}
         <label className="me-2 fs-5">Filter by Category:</label>
         <select
           className="form-select w-25"
@@ -198,7 +189,6 @@ export default function Home() {
         </select>
       </div>
 
-      {/* ================= FOOD CARDS ================= */}
       <div className="container-fluid mt-4">
         <div className="row">
           {foodItem
@@ -213,8 +203,6 @@ export default function Home() {
               <div
                 key={filteredItem._id}
                 className="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center mb-4">
-                
-                {/* ✅ Card is imported from Card.js */}
                 <Card
                   foodItem={filteredItem}
                   options={filteredItem.options[0]}
@@ -223,16 +211,13 @@ export default function Home() {
             ))}
         </div>
 
-        {/* Show loading message if no items */}
         {foodItem.filter(
           (item) =>
             (selectedCategory === "" ||
               item.CategoryName === selectedCategory) &&
             item.name.toLowerCase().includes(search.toLowerCase()) &&
             (foodType === "" || item.foodType === foodType)
-        ).length === 0 && (
-          <p className="alert alert-primary m-3">loading...</p>
-        )}
+        ).length === 0 && <p className="alert alert-primary m-3">loading...</p>}
       </div>
 
       <Footer />
