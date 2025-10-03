@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function Card(props) {
   let dispatch = useDispatchCart();
   let data = useCart();
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   let options = props.options;
   let priceOption = Object.keys(options);
