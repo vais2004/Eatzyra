@@ -40,7 +40,7 @@
 //           style={{ maxHeight: "350px", objectFit: "cover" }}
 //         />
 //         <div className="card-body text-center">
-         
+
 //           <span
 //             className="px-1"
 //             style={{
@@ -145,16 +145,14 @@ export default function FoodDetails() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-      }}
-    >
+      }}>
       <span
         style={{
           width: "12px",
           height: "12px",
           backgroundColor: "green",
           borderRadius: "50%",
-        }}
-      ></span>
+        }}></span>
     </span>
   );
 
@@ -168,16 +166,14 @@ export default function FoodDetails() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-      }}
-    >
+      }}>
       <span
         style={{
           width: "12px",
           height: "12px",
           backgroundColor: "red",
           borderRadius: "50%",
-        }}
-      ></span>
+        }}></span>
     </span>
   );
 
@@ -205,22 +201,14 @@ export default function FoodDetails() {
 
           <div className="d-flex justify-content-center gap-3 my-3 flex-wrap">
             {foodItem.options.map((opt, index) => (
-              <div
-                key={index}
-                className="border rounded px-3 py-2 shadow-sm"
-              >
+              <div key={index} className="border rounded px-3 py-2 shadow-sm">
                 <strong>Half:</strong> ₹{opt.half} | <strong>Full:</strong> ₹
                 {opt.full}
               </div>
             ))}
           </div>
-
-          <button className="btn btn-success px-4 py-2 rounded-pill">
-            🍴 Add to Cart
-          </button>
         </div>
       </div>
     </div>
   );
 }
-
