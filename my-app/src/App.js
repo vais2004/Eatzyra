@@ -7,6 +7,7 @@ import { CartProvider } from "./components/ContextReducer";
 import Cart from "./pages/Cart";
 import SignUp from "./pages/SignUp";
 import MyOrder from "./pages/MyOrder";
+import FoodDetails from "./pages/FoodDetails";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/my-order" element={<MyOrder />} />
+        <Route path="/food/:id" element={<FoodDetails/>}/>
         </Routes>
       </Router>
     </CartProvider>

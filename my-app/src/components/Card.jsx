@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatchCart, useCart } from "./ContextReducer";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Card(props) {
   let dispatch = useDispatchCart();
@@ -49,18 +49,20 @@ export default function Card(props) {
       <div
         className="card shadow-sm h-100"
         style={{ maxWidth: "280px", width: "100%" }}>
-        <img
-          src={props.foodItem.img}
-          className="card-img-top"
-          alt="food item"
-          style={{
-            width: "100%",
-            height: "180px",
-            objectFit: "cover",
-            borderTopLeftRadius: "0.25rem",
-            borderTopRightRadius: "0.25rem",
-          }}
-        />
+        <Link to={`/food/${props.foodItem._id}`}>
+          <img
+            src={props.foodItem.img}
+            className="card-img-top"
+            alt="food item"
+            style={{
+              width: "100%",
+              height: "180px",
+              objectFit: "cover",
+              borderTopLeftRadius: "0.25rem",
+              borderTopRightRadius: "0.25rem",
+            }}
+          />
+        </Link>
         <div className="card-body d-flex flex-column">
           <h5 className="card-title">{props.foodItem.name}</h5>
 
