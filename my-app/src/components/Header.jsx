@@ -12,7 +12,7 @@ export default function Header() {
     navigate("/login");
   };
   return (
-    <>
+    <header>
       <nav className="navbar navbar-expand-lg bg-success">
         <div className="container-fluid ">
           <Link
@@ -85,6 +85,6 @@ export default function Header() {
           </div>
         </div>
       </nav>
-    </>
+    </header>
   );
 }

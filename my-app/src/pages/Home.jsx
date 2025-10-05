@@ -42,7 +42,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <>
       <Header />
       <ToastContainer position="top-right" className="mt-5" autoClose={3000} />
 
@@ -221,6 +221,6 @@ export default function Home() {
       </div>
 
       <Footer />
-    </div>
+    </>
   );
 }

@@ -34,9 +34,9 @@ export default function MyOrder() {
   }, []);
 
   return (
-    <div>
+    <>
       <Header />
-      <div className="container py-4">
+      <main className="container py-4">
         <h2 className="text-center mb-4">My Orders</h2>
 
         {orderData.length === 0 ? (
@@ -123,8 +123,8 @@ export default function MyOrder() {
             </div>
           ))
         )}
-      </div>
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }

@@ -31,7 +31,7 @@ export default function SignUp() {
   };
 
   return (
-    <div
+    <main
       className="container d-flex justify-content-center align-items-center"
       style={{ minHeight: "100vh" }}>
       <div
@@ -108,6 +108,6 @@ export default function SignUp() {
           </div>
         </form>
       </div>
-    </div>
+    </main>
   );
 }

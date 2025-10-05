@@ -92,7 +92,7 @@ export default function Cart() {
   return (
     <>
       <Header />
-      <div className="container my-5">
+      <main className="container my-5">
         {data.length === 0 ? (
           <div className="d-flex flex-column justify-content-center align-items-center text-center">
             <p className="text-center fs-4 my-5">Your cart is empty! 🛒</p>
@@ -287,7 +287,7 @@ export default function Cart() {
             </div>
           </div>
         )}
-      </div>
+      </main>
       <Footer />
     </>
   );
