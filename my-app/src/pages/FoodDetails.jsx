@@ -33,7 +33,7 @@ export default function FoodDetails() {
     return <p className="text-center my-5">⏳ Loading food details...</p>;
   }
 
-  // Veg and Non-Veg symbols as separate components
+  // veg and Non-Veg symbols
   const VegSymbol = () => (
     <>
       <span
@@ -82,43 +82,42 @@ export default function FoodDetails() {
     </>
   );
 
-  // Normalize food type to lowercase for comparison
+  // normalize food type to lowercase
   const foodType = foodItem.foodType?.toLowerCase();
 
   return (
     <>
-     <Header/>
-    <main className="container my-5">
-     
-      <div className="card border-1 rounded-4">
-        <img
-          src={foodItem.img}
-          className="card-img-top rounded-top-4"
-          alt={foodItem.name}
-          style={{ maxHeight: "350px", objectFit: "cover" }}
-        />
-        <div className="card-body ">
-          <div className="my-3 gap-2">
-            {foodType === "veg" && <VegSymbol />}
-            {foodType === "non-veg" && <NonVegSymbol />}
-          </div>
+      <Header />
+      <main className="container my-5">
+        <div className="card border-1 rounded-4">
+          <img
+            src={foodItem.img}
+            className="card-img-top rounded-top-4"
+            alt={foodItem.name}
+            style={{ maxHeight: "350px", objectFit: "cover" }}
+          />
+          <div className="card-body ">
+            <div className="my-3 gap-2">
+              {foodType === "veg" && <VegSymbol />}
+              {foodType === "non-veg" && <NonVegSymbol />}
+            </div>
 
-          <h6 className="text-muted">{foodItem.CategoryName}</h6>
-          <h2 className="card-title fw-bold">{foodItem.name}</h2>
-          <p className="card-text text-secondary">{foodItem.description}</p>
+            <h6 className="text-muted">{foodItem.CategoryName}</h6>
+            <h2 className="card-title fw-bold">{foodItem.name}</h2>
+            <p className="card-text text-secondary">{foodItem.description}</p>
 
-          <div className="d-flex justify-content-center gap-3 my-3 flex-wrap">
-            {foodItem.options.map((opt, index) => (
-              <div key={index} className="border rounded px-3 py-2 shadow-sm">
-                <strong>Half:</strong> ₹{opt.half} | <strong>Full:</strong> ₹
-                {opt.full}
-              </div>
-            ))}
+            <div className="d-flex justify-content-center gap-3 my-3 flex-wrap">
+              {foodItem.options.map((opt, index) => (
+                <div key={index} className="border rounded px-3 py-2 shadow-sm">
+                  <strong>Half:</strong> ₹{opt.half} | <strong>Full:</strong> ₹
+                  {opt.full}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </main>
-    <Footer/>
+      </main>
+      <Footer />
     </>
   );
 }
