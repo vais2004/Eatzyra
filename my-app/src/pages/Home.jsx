@@ -23,6 +23,11 @@ export default function Home() {
           },
         }
       );
+
+      if (!response.ok) {
+        console.error("Server returned:", response.statusText);
+        return;
+      }
       let json = await response.json();
 
       if (Array.isArray(json)) {
