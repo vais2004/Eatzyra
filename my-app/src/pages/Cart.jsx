@@ -3,6 +3,9 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useCart, useDispatchCart } from "../components/ContextReducer";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function Cart() {
   const quotes = [
     "🛒✨ Your cart is empty… let’s fill it with yummy food! 🍔🍕🍝",
@@ -77,11 +80,12 @@ export default function Cart() {
       const responseData = await response.json();
       console.log("Order Response:", responseData);
 
+      // inside handleCheckOut
       if (responseData.success) {
-        alert("🎉 Order placed successfully!");
+        toast.success("🎉 Order placed successfully! 🎉");
         dispatch({ type: "DROP" });
       } else {
-        alert(`Order failed: ${responseData.error}`);
+        toast.error(`Order failed: ${responseData.error}`);
       }
     } catch (error) {
       console.error("Checkout error:", error);
@@ -93,6 +97,7 @@ export default function Cart() {
     <>
       <Header />
       <main className="container my-5">
+        <ToastContainer position="top-center" autoClose={3000} />
         {data.length === 0 ? (
           <div className="d-flex flex-column justify-content-center align-items-center text-center">
             <p className="text-center fs-4 my-5">Your cart is empty! 🛒</p>
@@ -143,7 +148,10 @@ export default function Cart() {
                           <button
                             type="button"
                             className="btn btn-danger btn-sm"
-                            onClick={() => dispatch({ type: "REMOVE", index })}>
+                            onClick={() => {
+                              dispatch({ type: "REMOVE", index });
+                              toast.info("🗑️ Item removed from cart!");
+                            }}>
                             <i className="bi bi-trash"></i>
                           </button>
                         </td>

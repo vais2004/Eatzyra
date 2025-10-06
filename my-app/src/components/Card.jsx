@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatchCart, useCart } from "./ContextReducer";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Card(props) {
   let dispatch = useDispatchCart();
@@ -31,6 +32,7 @@ export default function Card(props) {
         id: props.foodItem._id,
         size: size,
       });
+      toast.error(`Removed "${props.foodItem.name}" from cart.`);
     } else {
       await dispatch({
         type: "ADD",
@@ -41,6 +43,7 @@ export default function Card(props) {
         size: size,
         img: props.foodItem.img,
       });
+      toast.success(`Added "${props.foodItem.name}" to the cart.`);
     }
   };
 
