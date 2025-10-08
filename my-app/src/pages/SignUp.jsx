@@ -1,18 +1,36 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function SignUp() {
-   const [data, setData] = useState({
+  let navigate = useNavigate();
+  const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
     location: "",
   });
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (data.password.length < 6) {
+      toast.error("⚠️ Password must be at least 6 characters long. ⚠️");
+      return;
+    }
+
+    if (data.password !== confirmPassword) {
+      toast.error("⚠️ Passwords do not match! ⚠️");
+      return;
+    }
+
+    if (!data.email.includes("@") || !data.email.includes(".")) {
+      toast.error(
+        "⚠️ Please enter a valid email address (must include @ and .)"
+      );
+      return;
+    }
 
     try {
       const response = await fetch(
@@ -29,6 +47,17 @@ export default function SignUp() {
 
       if (response.ok && result.success) {
         toast.success("🎉 Signup Successful! Welcome aboard.");
+
+        // Store email and token (auto-login)
+        localStorage.setItem("userEmail", data.email);
+        localStorage.setItem("authToken", result.authToken);
+
+        // Clear form
+        setData({ name: "", email: "", password: "", location: "" });
+
+        // Redirect to home
+        navigate("/"); // you need `const navigate = useNavigate();` at the top
+
         setData({ name: "", email: "", password: "", location: "" });
       } else {
         toast.error(
@@ -43,11 +72,12 @@ export default function SignUp() {
     }
   };
 
-
   return (
     <main
       className="container d-flex justify-content-center align-items-center"
       style={{ minHeight: "100vh" }}>
+      <ToastContainer position="top-right" className="mt-5" autoClose={3000} />
+
       <div
         className="card shadow-lg p-4"
         style={{ maxWidth: "500px", width: "100%" }}>
@@ -86,7 +116,7 @@ export default function SignUp() {
           </div>
           <div className="mb-3">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               className="form-control"
               id="password"
@@ -98,14 +128,23 @@ export default function SignUp() {
           </div>
           <div className="mb-3">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Confirm Password"
               className="form-control"
               id="confirmPassword"
-              value={data.password}
+              value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
+            <input
+              type="checkbox"
+              className="form-check-input mt-2"
+              id="showPassword"
+              onChange={() => setShowPassword(!showPassword)}
+            />{" "}
+            <label className="form-check-label mt-1" htmlFor="showPassword">
+              Show Password
+            </label>
           </div>
           <div className="mb-3">
             <label htmlFor="exampleInputLocation" className="form-label">
