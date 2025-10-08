@@ -1,34 +1,48 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function SignUp() {
-  const [data, setData] = useState({
+   const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
     location: "",
   });
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(
-      "https://eatzyra-backend.vercel.app/api/createuser",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+
+    try {
+      const response = await fetch(
+        "https://eatzyra-backend.vercel.app/api/createuser",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
+
+      const result = await response.json();
+      console.log(result);
+
+      if (response.ok && result.success) {
+        toast.success("🎉 Signup Successful! Welcome aboard.");
+        setData({ name: "", email: "", password: "", location: "" });
+      } else {
+        toast.error(
+          result.message ||
+            result.error ||
+            "⚠️ This email is already registered. Try another one."
+        );
       }
-    );
-
-    const result = await response.json();
-    console.log(result);
-
-    if (response.ok) {
-      setData({ name: "", email: "", password: "", location: "" });
+    } catch (error) {
+      toast.error("⚠️ Server error. Please try again later.");
+      console.error(error);
     }
   };
+
 
   return (
     <main
@@ -71,16 +85,25 @@ export default function SignUp() {
             </div>
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">
-              Password
-            </label>
             <input
               type="password"
+              placeholder="Password"
               className="form-control"
-              id="exampleInputPassword1"
+              id="password"
               name="password"
               value={data.password}
               onChange={(e) => setData({ ...data, password: e.target.value })}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              className="form-control"
+              id="confirmPassword"
+              value={data.password}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
           </div>

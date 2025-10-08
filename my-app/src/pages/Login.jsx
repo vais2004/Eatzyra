@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Login() {
   let navigate = useNavigate();
@@ -32,9 +33,12 @@ export default function Login() {
       localStorage.setItem("userEmail", data.email);
       localStorage.setItem("authToken", result.authToken);
       console.log("Stored email:", data.email);
+      toast.success("✅ Logged in successfully!");
 
       setData({ email: "", password: "" });
-      navigate("/");
+      setTimeout(() => navigate("/"), 3000);
+    } else {
+      toast.error(result.error || "❌ Invalid email or password");
     }
   };
 
@@ -42,6 +46,8 @@ export default function Login() {
     <main
       className="container d-flex justify-content-center align-items-center"
       style={{ minHeight: "100vh" }}>
+      <ToastContainer position="top-right" className="mt-5" autoClose={3000} />
+
       <div
         className="card shadow-lg p-4"
         style={{ maxWidth: "400px", width: "100%" }}>
