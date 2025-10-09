@@ -27,7 +27,7 @@ export default function SignUp() {
 
     if (!data.email.includes("@") || !data.email.includes(".")) {
       toast.error(
-        "⚠️ Please enter a valid email address (must include @ and .)"
+        "⚠️ Please enter a valid email address (must include @ and .) ⚠️"
       );
       return;
     }
@@ -46,28 +46,26 @@ export default function SignUp() {
       console.log(result);
 
       if (response.ok && result.success) {
-        toast.success("🎉 Signup Successful! Welcome aboard.");
+        toast.success("🎉 Signup Successful! Welcome aboard. 🎉");
 
-        // Store email and token (auto-login)
+        // store email and token (auto-login)
         localStorage.setItem("userEmail", data.email);
         localStorage.setItem("authToken", result.authToken);
 
-        // Clear form
         setData({ name: "", email: "", password: "", location: "" });
 
-        // Redirect to home
-        navigate("/"); // you need `const navigate = useNavigate();` at the top
+        navigate("/");
 
         setData({ name: "", email: "", password: "", location: "" });
       } else {
         toast.error(
           result.message ||
             result.error ||
-            "⚠️ This email is already registered. Try another one."
+            "⚠️ This email is already registered. Try another one. ⚠️"
         );
       }
     } catch (error) {
-      toast.error("⚠️ Server error. Please try again later.");
+      toast.error("⚠️ Server error. Please try again later. ⚠️");
       console.error(error);
     }
   };
