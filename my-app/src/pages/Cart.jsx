@@ -51,7 +51,7 @@ export default function Cart() {
 
   const handleCheckOut = async (e) => {
     e.preventDefault();
-    const userEmail = localStorage.getItem("userEmail"); // This line was missing
+    const userEmail = localStorage.getItem("userEmail");
     if (!userEmail) return alert("Please log in to complete your order");
     if (data.length === 0) return alert("Your cart is empty");
 
@@ -80,7 +80,6 @@ export default function Cart() {
       const responseData = await response.json();
       console.log("Order Response:", responseData);
 
-      // inside handleCheckOut
       if (responseData.success) {
         toast.success("🎉 Order placed successfully! 🎉");
         dispatch({ type: "DROP" });

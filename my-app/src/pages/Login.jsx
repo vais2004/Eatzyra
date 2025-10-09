@@ -33,12 +33,12 @@ export default function Login() {
       localStorage.setItem("userEmail", data.email);
       localStorage.setItem("authToken", result.authToken);
       console.log("Stored email:", data.email);
-      toast.success("✅ Logged in successfully!");
+      toast.success("✅ Logged in successfully! ✅");
 
       setData({ email: "", password: "" });
       setTimeout(() => navigate("/"), 3000);
     } else {
-      toast.error(result.error || "❌ Invalid email or password");
+      toast.error(result.error || "❌ Invalid email or password ❌");
     }
   };
 

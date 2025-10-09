@@ -43,7 +43,7 @@ export default function Card(props) {
         size: size,
         img: props.foodItem.img,
       });
-      toast.success(`Added "${props.foodItem.name}" to the cart.`);
+      toast.success(`Added "${props.foodItem.name}" to the cart. 🛒`);
     }
   };
 
