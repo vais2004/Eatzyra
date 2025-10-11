@@ -8,7 +8,6 @@ export default function SignUp() {
     name: "",
     email: "",
     password: "",
-    location: "",
   });
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -52,11 +51,11 @@ export default function SignUp() {
         localStorage.setItem("userEmail", data.email);
         localStorage.setItem("authToken", result.authToken);
 
-        setData({ name: "", email: "", password: "", location: "" });
+        setData({ name: "", email: "", password: "" });
 
         navigate("/");
 
-        setData({ name: "", email: "", password: "", location: "" });
+        setData({ name: "", email: "", password: "" });
       } else {
         toast.error(
           result.message ||
@@ -143,20 +142,6 @@ export default function SignUp() {
             <label className="form-check-label mt-1" htmlFor="showPassword">
               Show Password
             </label>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="exampleInputLocation" className="form-label">
-              Address
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="exampleInputLocation"
-              name="location"
-              value={data.location}
-              onChange={(e) => setData({ ...data, location: e.target.value })}
-              required
-            />
           </div>
 
           <button type="submit" className="btn btn-primary w-100 mb-3">
