@@ -19,7 +19,7 @@ export default function FoodDetails() {
         }
 
         const data = await response.json();
-        console.log("Fetched food item:", data); // For debugging
+        //console.log("Fetched food item:", data); // For debugging
         setFoodItem(data);
       } catch (err) {
         console.error("Error fetching food item:", err);
