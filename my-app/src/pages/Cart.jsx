@@ -40,6 +40,11 @@ export default function Cart() {
 
   const userEmail = localStorage.getItem("userEmail");
 
+//calculate total price
+  const totalPrice = () => {
+    return cart.reduce((total, item) => total + item.price, 0);
+  };
+
   //fetching saved addresses
   useEffect(() => {
     const fetchAddresses = async () => {
@@ -109,6 +114,7 @@ export default function Cart() {
         });
       } else {
         toast.error(data.error || "Failed to save address.");
+     console.log(data.error)
       }
     } catch (err) {
       toast.error("Error saving address.");
@@ -185,10 +191,7 @@ export default function Cart() {
     }
   };
 
-  //calculate total price
-  const totalPrice = () => {
-    return cart.reduce((total, item) => total + item.price, 0);
-  };
+  
 
   return (
     <>
