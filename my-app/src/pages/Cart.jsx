@@ -36,16 +36,14 @@ export default function Cart() {
     paymentMethod: "COD",
   });
   const [savedAddresses, setSavedAddresses] = useState([]);
-  const [loading, setLoading] = useState(false);
+  //const [loading, setLoading] = useState(false);
 
   const userEmail = localStorage.getItem("userEmail");
 
-//calculate total price
   const totalPrice = () => {
     return cart.reduce((total, item) => total + item.price, 0);
   };
 
-  //fetching saved addresses
   useEffect(() => {
     const fetchAddresses = async () => {
       if (!userEmail) return;
@@ -59,7 +57,7 @@ export default function Cart() {
           }
         );
         const data = await res.json();
-        if (data.success) {
+        if (data.addresses) {
           setSavedAddresses(data.addresses);
         } else {
           setSavedAddresses([]);
@@ -72,7 +70,6 @@ export default function Cart() {
     fetchAddresses();
   }, [userEmail]);
 
-  //handle input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -81,48 +78,6 @@ export default function Cart() {
     });
   };
 
-  //save address
-  const handleSaveAddress = async () => {
-    if (!userEmail) {
-      toast.error("Please login first.");
-      return;
-    }
-    setLoading(true);
-    try {
-      const res = await fetch(
-        "https://eatzyra-backend.vercel.app/api/add-address",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...formData, userEmail }),
-        }
-      );
-      const data = await res.json();
-      if (data.success) {
-        toast.success("Address saved successfully!");
-        setSavedAddresses([...savedAddresses, data.address]);
-        setFormData({
-          fullName: "",
-          mobile: "",
-          house: "",
-          area: "",
-          town: "",
-          pincode: "",
-          state: "",
-          isDefault: false,
-          paymentMethod: "COD",
-        });
-      } else {
-        toast.error(data.error || "Failed to save address.");
-     console.log(data.error)
-      }
-    } catch (err) {
-      toast.error("Error saving address.");
-    }
-    setLoading(false);
-  };
-
-  //delete address
   const deleteAddress = async (id) => {
     try {
       const res = await fetch(
@@ -141,9 +96,8 @@ export default function Cart() {
     }
   };
 
-  //select saved address
   const selectAddress = (address) => {
-    setFormData({
+    setFormData((prev) => ({
       fullName: address.fullName,
       mobile: address.mobile,
       house: address.house,
@@ -153,13 +107,23 @@ export default function Cart() {
       state: address.state,
       isDefault: address.isDefault,
       paymentMethod: formData.paymentMethod,
-    });
+    }));
     toast.success("Using saved address!");
   };
 
-  //place order
   const handleCheckout = async () => {
     if (cart.length === 0) return toast.error("Your cart is empty!");
+    if (
+      !formData.fullName ||
+      !formData.mobile ||
+      !formData.house ||
+      !formData.area ||
+      !formData.town ||
+      !formData.pincode ||
+      !formData.state
+    ) {
+      return toast.error("Please fill all address fields!");
+    }
 
     const orderData = {
       order_data: cart,
@@ -171,7 +135,23 @@ export default function Cart() {
     };
 
     try {
-      const res = await fetch(
+      // Save as default address only if checkbox is checked
+      if (formData.isDefault) {
+        const res = await fetch(
+          "https://eatzyra-backend.vercel.app/api/add-address",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...formData, userEmail }),
+          }
+        );
+        const data = await res.json();
+        if (data.address) {
+          setSavedAddresses([...savedAddresses, data.address]);
+        }
+      }
+
+      const res2 = await fetch(
         "https://eatzyra-backend.vercel.app/api/order-data",
         {
           method: "POST",
@@ -179,10 +159,21 @@ export default function Cart() {
           body: JSON.stringify(orderData),
         }
       );
-      const data = await res.json();
-      if (data.success) {
+      const data2 = await res2.json();
+      if (data2.success) {
         toast.success("Order placed successfully!");
         dispatch({ type: "DROP" });
+        setFormData({
+          fullName: "",
+          mobile: "",
+          house: "",
+          area: "",
+          town: "",
+          pincode: "",
+          state: "",
+          isDefault: false,
+          paymentMethod: "COD",
+        });
       } else {
         toast.error("Failed to place order.");
       }
@@ -191,17 +182,13 @@ export default function Cart() {
     }
   };
 
-  
-
   return (
     <>
       <Header />
       <div className="container mt-5 mb-5">
         <ToastContainer />
-
         <h2 className="text-center mb-4">🛒 My Cart</h2>
 
-        {/* cart items */}
         {cart.length === 0 ? (
           <div className="text-center">
             <h5>Your cart is empty!</h5>
@@ -243,7 +230,6 @@ export default function Cart() {
 
             <h5 className="text-end">Total Price: ₹{totalPrice()}</h5>
 
-            {/* saved addresses */}
             <div className="card shadow-sm p-3 mt-4 mb-4">
               <h5 className="mb-3">Saved Addresses</h5>
               {savedAddresses.length === 0 ? (
@@ -281,9 +267,8 @@ export default function Cart() {
               )}
             </div>
 
-            {/* address form */}
             <div className="card shadow-sm p-3">
-              <h5>Add / Edit Address</h5>
+              <h5>Address & Payment</h5>
               <div className="row">
                 <div className="col-md-6 mb-2">
                   <input
@@ -368,19 +353,56 @@ export default function Cart() {
                   </label>
                 </div>
               </div>
-              <button
-                className="btn btn-success"
-                onClick={handleSaveAddress}
-                disabled={loading}>
-                {loading ? "Saving..." : "Save Address"}
-              </button>
-            </div>
 
-            {/* checkout button */}
-            <div className="text-end mt-4">
-              <button className="btn btn-primary" onClick={handleCheckout}>
-                Proceed to Checkout
-              </button>
+              <h5 className="mt-3">Payment Method</h5>
+              <div className="form-check">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="COD"
+                  checked={formData.paymentMethod === "COD"}
+                  onChange={handleChange}
+                  className="form-check-input"
+                  id="cod"
+                />
+                <label className="form-check-label" htmlFor="cod">
+                  Cash on Delivery
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="UPI"
+                  checked={formData.paymentMethod === "UPI"}
+                  onChange={handleChange}
+                  className="form-check-input"
+                  id="upi"
+                />
+                <label className="form-check-label" htmlFor="upi">
+                  UPI
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="Card"
+                  checked={formData.paymentMethod === "Card"}
+                  onChange={handleChange}
+                  className="form-check-input"
+                  id="card"
+                />
+                <label className="form-check-label" htmlFor="card">
+                  Credit / Debit Card
+                </label>
+              </div>
+
+              <div className="text-end mt-3">
+                <button className="btn btn-primary" onClick={handleCheckout}>
+                  Proceed to Checkout
+                </button>
+              </div>
             </div>
           </>
         )}
