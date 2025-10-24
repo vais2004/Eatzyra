@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# 🍴 Eatzyra - Online Food Ordering App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Eatzyra is a **MERN Stack (MongoDB, Express, React, Node.js)** web application for online food ordering.  
+It allows users to browse food items, add them to the cart, and place orders with payment and address details.  
+Admins can manage food categories, items, and view orders.
 
-## Available Scripts
+##### Hosted Link: (https://eatzyra-fofe.vercel.app/)
+ 
+##### Backend code URL: (https://github.com/vais2004/Eatzyra-backend)
 
-In the project directory, you can run:
+##### Frontend code URL: (https://github.com/vais2004/Eatzyra)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🚀 Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 🧑‍🍳 User Features
+- Search food items dynamically  
+- Add or remove items from cart  
+- View total cart price  
+- Place order with address and payment method (COD / UPI / Card)  
+- Get confirmation for successful order placement  
+- Responsive UI (Mobile + Desktop)  
 
-### `npm test`
+### 🛠️ Admin Features
+- Manage food categories and items  
+- View and manage all orders  
+- Add, update, or delete items from the database  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🧩 Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Layer | Technology |
+|-------|-------------|
+| Frontend | React.js, Bootstrap, React Router, React Toastify |
+| Backend | Node.js, Express.js |
+| Database | MongoDB with Mongoose |
+| Styling | Bootstrap 5, Custom CSS |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📸 Demo Images:
+### LOGIN PAGE
+<img width="1918" height="888" alt="Screenshot 2025-10-24 203210" src="https://github.com/user-attachments/assets/f42388e8-d1ea-45a6-b3b2-77b684e56331" />
 
-### `npm run eject`
+### SIGNUP PAGE
+<img width="1919" height="894" alt="Screenshot 2025-10-24 203223" src="https://github.com/user-attachments/assets/5ff9f389-c114-4aa1-b790-d6696b18461c" />
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### HOME
+<img width="1911" height="884" alt="Screenshot 2025-10-24 184451" src="https://github.com/user-attachments/assets/944ed249-6cb8-4c5e-af37-3e9aea577fb9" />
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img width="1913" height="883" alt="Screenshot 2025-10-24 184507" src="https://github.com/user-attachments/assets/40965206-6514-43a1-87b3-bfec4648df69" />
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<img width="1919" height="886" alt="Screenshot 2025-10-24 184522" src="https://github.com/user-attachments/assets/31e3ad95-3023-48df-9db6-9ff78bdd2caa" />
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### ITEM DETAILS PAGE
+<img width="1915" height="886" alt="Screenshot 2025-10-24 204127" src="https://github.com/user-attachments/assets/06e68dd6-308c-4b65-af6b-08e05bcc55dc" />
 
-## Learn More
+<img width="1917" height="893" alt="Screenshot 2025-10-24 204145" src="https://github.com/user-attachments/assets/b982d05e-3b7c-476c-9be7-a90c9bd3e649" />
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### CART 
+<img width="1914" height="883" alt="Screenshot 2025-10-24 202855" src="https://github.com/user-attachments/assets/4a90e1e9-8899-437e-ad1f-446ce2dbaa1f" />
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img width="1917" height="891" alt="Screenshot 2025-10-24 202908" src="https://github.com/user-attachments/assets/ee6192f1-66c3-4071-a92b-b589efdaeb30" />
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### MY ORDER PAGE
+<img width="1915" height="896" alt="Screenshot 2025-10-24 203057" src="https://github.com/user-attachments/assets/bc2612fe-4a5d-4adf-9f92-f757abc207df" />
