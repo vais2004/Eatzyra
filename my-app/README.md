@@ -60,9 +60,9 @@ Admins can manage food categories, items, and view orders.
 <img width="1917" height="893" alt="Screenshot 2025-10-24 204145" src="https://github.com/user-attachments/assets/b982d05e-3b7c-476c-9be7-a90c9bd3e649" />
 
 ### CART 
-<img width="1914" height="883" alt="Screenshot 2025-10-24 202855" src="https://github.com/user-attachments/assets/4a90e1e9-8899-437e-ad1f-446ce2dbaa1f" />
+<img width="1919" height="892" alt="Screenshot 2025-10-25 120641" src="https://github.com/user-attachments/assets/38d6d4b7-056e-4833-9844-fedd38eb4470" />
 
-<img width="1917" height="891" alt="Screenshot 2025-10-24 202908" src="https://github.com/user-attachments/assets/ee6192f1-66c3-4071-a92b-b589efdaeb30" />
+<img width="1917" height="894" alt="Screenshot 2025-10-25 120656" src="https://github.com/user-attachments/assets/f3f57acd-e831-4b2d-95b3-5d23eb56115a" />
 
 ### MY ORDER PAGE
 <img width="1915" height="896" alt="Screenshot 2025-10-24 203057" src="https://github.com/user-attachments/assets/bc2612fe-4a5d-4adf-9f92-f757abc207df" />
