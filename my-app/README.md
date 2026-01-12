@@ -4,11 +4,10 @@ Eatzyra is a **MERN Stack (MongoDB, Express, React, Node.js)** web application f
 It allows users to browse food items, add them to the cart, and place orders with payment and address details.  
 Admins can manage food categories, items, and view orders.
 
-##### Hosted Link: (https://eatzyra-fofe.vercel.app/)
- 
-##### Backend code URL: (https://github.com/vais2004/Eatzyra-backend)
+- **Live Demo:** [Click here](https://eatzyra-fofe.vercel.app/)
+- **Backend Code:** [Click here](https://github.com/vais2004/Eatzyra-backend)
+- **Frontend Code:** [Click here](https://github.com/vais2004/Eatzyra)
 
-##### Frontend code URL: (https://github.com/vais2004/Eatzyra)
 
 ---
 
